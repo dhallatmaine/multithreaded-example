@@ -13,6 +13,7 @@ class MultithreadedCalculatorService : Calculator {
         }
 
         executorService.invokeAll(taskList)
+        executorService.shutdown()
     }
 
 }
