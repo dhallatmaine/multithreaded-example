@@ -2,8 +2,6 @@ import java.util.*
 import kotlin.system.measureTimeMillis
 
 fun main(args : Array<String>) {
-    val calculator = MultithreadedCalculatorService()
-
     val stocks = Arrays.asList(
             Stock("appl", 100),
             Stock("appl", 150),
@@ -16,8 +14,17 @@ fun main(args : Array<String>) {
             Stock("chst", 15),
             Stock("idxx", 115))
 
-    val timeElapsed = measureTimeMillis {
+    val calculator = CalculatorService()
+
+    var timeElapsed = measureTimeMillis {
         calculator.calc(stocks)
     }
-    println("Total time elapsed: $timeElapsed")
+    println("Serial: Total time elapsed: $timeElapsed")
+
+
+    val multithreadedCalculator = MultithreadedCalculatorService()
+    timeElapsed = measureTimeMillis {
+        multithreadedCalculator.calc(stocks)
+    }
+    println("Multithreaded: Total time elapsed: $timeElapsed")
 }

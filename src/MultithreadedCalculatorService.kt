@@ -12,12 +12,7 @@ class MultithreadedCalculatorService : Calculator {
             taskList.add(futureStock)
         }
 
-        val futures = executorService.invokeAll(taskList)
-
-        for (future in futures) {
-            if (! future.isDone) continue
-            println(future.get().ticker + " " + future.get().price)
-        }
+        executorService.invokeAll(taskList)
     }
 
 }
